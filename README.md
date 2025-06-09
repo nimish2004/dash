@@ -1,12 +1,48 @@
-# React + Vite
+# React Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, customizable React Admin Dashboard featuring:
 
-Currently, two official plugins are available:
+- Customizable Light/Dark themes
+- Responsive tables with add/edit/delete functionality
+- Interactive calendar with event viewing
+- Drag-and-drop Kanban board for task management
+- Charts for data visualization
+- User profile management
+- Notifications and user menu in Navbar
+- Smooth user experience with modular components
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Theme Customization  
+Toggle between light and dark modes globally using React Context.
+
+### Tables  
+Manage users with add, edit, and delete functionality.
+
+### Calendar  
+View events in a monthly calendar layout with modal event details.
+
+### Kanban Board  
+Drag and drop tasks between columns with real-time state update.
+
+### Charts  
+Visualize data using responsive charts powered by `recharts`.
+
+### User Profile  
+Update user details in a clean, responsive form.
+
+### Notifications  
+Dropdown notifications panel with click outside to close.
+
+---
+
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/nimish2004/dash.git
+   cd dash
