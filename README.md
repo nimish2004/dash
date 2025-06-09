@@ -1,3 +1,5 @@
+
+
 # React Admin Dashboard
 
 A modern, customizable React Admin Dashboard featuring:
@@ -12,6 +14,7 @@ A modern, customizable React Admin Dashboard featuring:
 - Smooth user experience with modular components
 
 ---
+![image](https://github.com/user-attachments/assets/54ae5eba-0b87-4e2b-95ca-616da7d41724)
 
 ## Features
 
