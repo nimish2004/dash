@@ -25,7 +25,7 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const Charts = () => {
   return (
-    <div className="p-6 bg-white rounded shadow-md max-w-6xl mx-auto space-y-12">
+    <div className="flex-1 overflow-y-auto pl-64">
       <h2 className="text-3xl font-bold mb-6 text-gray-900">Charts</h2>
 
       {/* Line Chart */}

@@ -40,7 +40,7 @@ const Employees = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="flex-1 overflow-y-auto pl-64">
       <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-green-600 to-teal-600 text-white p-4 rounded-lg shadow-lg">
         Employees 👥
       </h2>

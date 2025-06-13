@@ -1,23 +1,23 @@
-import { useState, useRef, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
 import { ThemeContext } from "./ThemeContext";
+import { useSidebar } from "../context/SidebarContext"; // Make sure you created this
+import { Link } from "react-router-dom";
 
-const notificationsData = [
-  { id: 1, message: "New user registered" },
-  { id: 2, message: "Server rebooted" },
-  { id: 3, message: "New order received" },
-];
+const user = {
+  name: "Nimish Berwal",
+  email: "nimish@example.com",
+  role: "Administrator",
+  joined: "Jan 2024",
+  avatar: "https://i.pravatar.cc/100?img=3",
+};
 
-// Theme toggle button component
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <button
       onClick={toggleTheme}
-      className="px-3 py-1 rounded bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-400 dark:hover:bg-gray-600 transition"
-      aria-label="Toggle theme"
-      title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      className="p-2 rounded-full bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-400 dark:hover:bg-gray-600 transition"
     >
       {theme === "light" ? "🌞" : "🌙"}
     </button>
@@ -25,83 +25,135 @@ const ThemeToggle = () => {
 };
 
 const Navbar = () => {
-  const [notifOpen, setNotifOpen] = useState(false);
-  const notifRef = useRef(null);
-
-  // Close dropdown if clicked outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (notifRef.current && !notifRef.current.contains(event.target)) {
-        setNotifOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const { toggleSidebar } = useSidebar();
+  const [showProfile, setShowProfile] = useState(false);
 
   return (
-    <header className="w-full flex justify-between items-center px-6 py-4 bg-gray-900 shadow-md dark:bg-gray-800">
-      <h1 className="text-2xl font-bold text-white tracking-wide">
-        Admin<span className="text-blue-400">Board</span>
-      </h1>
-
-      <div className="flex items-center gap-6">
-        {/* Theme toggle button */}
-        <ThemeToggle />
-
-        <div className="relative" ref={notifRef}>
+    <>
+    <div className="flex-1 overflow-y-auto pl-64">
+      <header className="w-full flex justify-between items-center px-4 sm:px-6 py-4 pl-14 bg-gray-900 shadow-md dark:bg-gray-800 relative">
+        {/* Left Section: Sidebar toggle + Branding */}
+        <div className="flex items-center gap-4">
           <button
-            onClick={() => setNotifOpen((open) => !open)}
-            className="relative hover:scale-110 transition"
-            aria-label="Toggle notifications"
+            onClick={toggleSidebar}
+            className="absolute top-4 left-4 z-50 text-white bg-gray-800 p-2 rounded-md shadow-lg hover:bg-gray-700 transition md:hidden"
           >
-            <span className="material-symbols-outlined text-white text-2xl">
-              notifications
-            </span>
-            <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs rounded-full px-1.5">
-              {notificationsData.length}
-            </span>
+            <span className="material-symbols-outlined text-xl">menu</span>
           </button>
 
-          {notifOpen && (
-            <div className="absolute right-0 mt-2 w-64 bg-gray-800 text-white border border-gray-700 rounded-md shadow-lg z-20">
-              <div className="max-h-48 overflow-y-auto">
-                {notificationsData.length > 0 ? (
-                  notificationsData.map(({ id, message }) => (
-                    <div
-                      key={id}
-                      className="px-4 py-2 hover:bg-gray-700 cursor-pointer border-b last:border-b-0"
-                    >
-                      {message}
-                    </div>
-                  ))
-                ) : (
-                  <div className="px-4 py-2 text-gray-400">No notifications</div>
-                )}
-              </div>
-            </div>
-          )}
+          <Link to="/dashboard" className="text-xl font-bold text-white tracking-wide hover:text-blue-300 transition">
+  Admin<span className="text-blue-400 hover:text-white transition">Board</span>
+</Link>
+
         </div>
 
-        <div className="relative group">
-          <button className="flex items-center gap-1 text-white hover:text-blue-400 transition">
-            <span className="material-symbols-outlined text-3xl">account_circle</span>
-            <span className="text-sm font-medium hidden md:inline">Admin</span>
+        {/* Right Section: Theme + Profile */}
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+
+          <button
+            onClick={() => setShowProfile(true)}
+            className="flex items-center gap-2 text-white hover:text-blue-400 transition"
+          >
+            <img
+              src={user.avatar}
+              alt="avatar"
+              className="w-8 h-8 rounded-full border-2 border-white shadow-sm"
+            />
+            <span className="hidden sm:inline text-sm font-medium">
+              Hi, <span className="font-semibold">{user.name.split(" ")[0]}</span>
+            </span>
           </button>
-          <div className="absolute right-0 mt-2 bg-gray-800 text-white border border-gray-700 rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity duration-300 z-10 w-40 invisible">
-            <Link
-              to="/profile"
-              className="block px-4 py-2 hover:bg-gray-700 transition"
-            >
-              Profile
-            </Link>
-            <button className="w-full text-left px-4 py-2 hover:bg-gray-700 transition">
-              Logout
-            </button>
-          </div>
+        </div>
+      </header>
+
+      {/* Overlay */}
+      {showProfile && (
+        <div
+          className="fixed inset-0  bg-opacity-30 z-40 transition-opacity duration-300"
+          onClick={() => setShowProfile(false)}
+        ></div>
+      )}
+
+      {/* Slide-in Profile Panel */}
+      <div
+        className={`fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-900 rounded-l-2xl shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+          showProfile ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="p-5 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+            User Profile
+          </h2>
+          <button
+            onClick={() => setShowProfile(false)}
+            className="text-gray-500 hover:text-black dark:hover:text-white text-xl"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div className="p-6 text-center">
+          <img
+            src={user.avatar}
+            alt="avatar"
+            className="w-20 h-20 rounded-full mx-auto mb-3 shadow"
+          />
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white">{user.name}</h3>
+          <p className="text-sm text-gray-500">{user.role}</p>
+          <p className="text-sm text-gray-400">{user.email}</p>
+        </div>
+
+        <div className="mt-2 px-5 space-y-1">
+          <Link
+            to="/profile"
+            className="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            onClick={() => setShowProfile(false)}
+          >
+            <span className="material-symbols-outlined bg-blue-100 text-blue-500 dark:bg-blue-900 p-2 rounded-full">
+              account_circle
+            </span>
+            <div>
+              <p className="text-sm font-semibold text-gray-800 dark:text-white">My Profile</p>
+              <p className="text-xs text-gray-500">Account Settings</p>
+            </div>
+          </Link>
+
+          <button className="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition w-full text-left">
+            <span className="material-symbols-outlined bg-green-100 text-green-500 dark:bg-green-900 p-2 rounded-full">
+              mail
+            </span>
+            <div>
+              <p className="text-sm font-semibold text-gray-800 dark:text-white">My Inbox</p>
+              <p className="text-xs text-gray-500">Messages & Emails</p>
+            </div>
+          </button>
+
+          <button className="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition w-full text-left">
+            <span className="material-symbols-outlined bg-yellow-100 text-yellow-500 dark:bg-yellow-900 p-2 rounded-full">
+              assignment
+            </span>
+            <div>
+              <p className="text-sm font-semibold text-gray-800 dark:text-white">My Tasks</p>
+              <p className="text-xs text-gray-500">To-do and daily logs</p>
+            </div>
+          </button>
+        </div>
+
+        <div className="mt-6 px-5">
+          <button
+  onClick={() => {
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "/login";
+  }}
+  className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
+>
+  Logout
+</button>
+</div>
         </div>
       </div>
-    </header>
+    </>
   );
 };
 

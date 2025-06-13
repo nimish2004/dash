@@ -77,7 +77,7 @@ const Kanban = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="flex-1 overflow-y-auto pl-64">
       <h2 className="text-3xl font-extrabold mb-6 text-gray-900">Kanban Board</h2>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="flex gap-6">

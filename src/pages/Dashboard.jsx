@@ -2,6 +2,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   BarChart, Bar,
 } from "recharts";
+import { Star } from "lucide-react";
 
 const userData = [
   { month: "Jan", users: 400 },
@@ -19,10 +20,32 @@ const revenueData = [
   { month: "May", revenue: 42000 },
 ];
 
+const topDrivers = [
+  {
+    name: "Rahul Verma",
+    orders: 128,
+    rating: 4.9,
+    avatar: "https://i.pravatar.cc/100?img=12",
+  },
+  {
+    name: "Sana Sheikh",
+    orders: 113,
+    rating: 4.8,
+    avatar: "https://i.pravatar.cc/100?img=34",
+  },
+  {
+    name: "Amit Mehra",
+    orders: 95,
+    rating: 4.7,
+    avatar: "https://i.pravatar.cc/100?img=45",
+  },
+];
+
 const Dashboard = () => (
-  <div className="p-6 bg-gray-50 min-h-screen">
+  <div className="flex-1 overflow-y-auto pl-64">
     <h2 className="text-3xl font-extrabold mb-8 text-gray-900">Welcome to the Dashboard</h2>
     
+    {/* Stats Cards */}
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
       <div className="bg-blue-600 text-white p-6 rounded-lg shadow-lg flex items-center gap-4">
         <span className="text-4xl">📈</span>
@@ -49,6 +72,7 @@ const Dashboard = () => (
       </div>
     </div>
 
+    {/* Charts */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
       <div className="bg-white p-6 rounded-lg shadow">
         <h3 className="text-xl font-semibold mb-4">User Growth (Last 5 Months)</h3>
@@ -82,7 +106,35 @@ const Dashboard = () => (
           <Legend />
           <Bar dataKey="revenue" fill="#38A169" />
         </BarChart>
-        
+      </div>
+    </div>
+
+    {/* Top Drivers Section */}
+    <div className="mt-12 bg-white p-6 rounded-lg shadow">
+      <h3 className="text-xl font-semibold mb-4">Top Performing Drivers</h3>
+      <div className="space-y-4">
+        {topDrivers.map((driver, index) => (
+          <div
+            key={index}
+            className="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:bg-gray-50"
+          >
+            <div className="flex items-center gap-4">
+              <img
+                src={driver.avatar}
+                alt={driver.name}
+                className="w-12 h-12 rounded-full object-cover"
+              />
+              <div>
+                <p className="font-semibold text-gray-800">{driver.name}</p>
+                <p className="text-sm text-gray-500">{driver.orders} orders completed</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1 text-yellow-500">
+              <Star size={18} fill="currentColor" />
+              <span className="text-sm font-medium text-gray-800">{driver.rating}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </div>

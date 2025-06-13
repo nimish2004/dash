@@ -18,7 +18,7 @@ const CalendarPage = () => {
   const closeModal = () => setSelectedEvent(null);
 
   return (
-    <div className="relative min-h-screen p-6">
+    <div className="flex-1 overflow-y-auto pl-64">
       <h2 className="text-2xl font-bold mb-4">Calendar</h2>
       
       {/* Blur background when modal open */}
