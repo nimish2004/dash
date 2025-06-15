@@ -119,25 +119,33 @@ const Navbar = () => {
             </div>
           </Link>
 
-          <button className="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition w-full text-left">
-            <span className="material-symbols-outlined bg-green-100 text-green-500 dark:bg-green-900 p-2 rounded-full">
-              mail
-            </span>
-            <div>
-              <p className="text-sm font-semibold text-gray-800 dark:text-white">My Inbox</p>
-              <p className="text-xs text-gray-500">Messages & Emails</p>
-            </div>
-          </button>
+          <Link
+                to="/chat"
+                 className="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition w-full text-left"
+                  onClick={() => setShowProfile(false)} // optional: close profile panel
+ >
+                  <span className="material-symbols-outlined bg-green-100 text-green-500 dark:bg-green-900 p-2 rounded-full">
+                  mail
+                      </span>
+                      <div>
+                     <p className="text-sm font-semibold text-gray-800 dark:text-white">My Inbox</p>
+                        <p className="text-xs text-gray-500">Messages & Emails</p>
+                                </div>
+                        </Link>
 
-          <button className="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition w-full text-left">
-            <span className="material-symbols-outlined bg-yellow-100 text-yellow-500 dark:bg-yellow-900 p-2 rounded-full">
-              assignment
-            </span>
-            <div>
-              <p className="text-sm font-semibold text-gray-800 dark:text-white">My Tasks</p>
-              <p className="text-xs text-gray-500">To-do and daily logs</p>
-            </div>
-          </button>
+          <Link
+  to="/kanban"
+  className="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition w-full text-left"
+  onClick={() => setShowProfile(false)} // optional to close the profile drawer
+>
+  <span className="material-symbols-outlined bg-yellow-100 text-yellow-500 dark:bg-yellow-900 p-2 rounded-full">
+    assignment
+  </span>
+  <div>
+    <p className="text-sm font-semibold text-gray-800 dark:text-white">My Tasks</p>
+    <p className="text-xs text-gray-500">To-do and daily logs</p>
+  </div>
+</Link>
         </div>
 
         <div className="mt-6 px-5">

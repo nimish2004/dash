@@ -2,6 +2,8 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   BarChart, Bar,
   PieChart, Pie, Cell,
+  AreaChart, Area,
+  RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
 } from "recharts";
 
 const sampleData = [
@@ -21,15 +23,23 @@ const pieData = [
   { name: "Organic", value: 200 },
 ];
 
+const radarData = [
+  { metric: "Ease of Use", A: 120, B: 110 },
+  { metric: "Performance", A: 98, B: 130 },
+  { metric: "Design", A: 86, B: 130 },
+  { metric: "Support", A: 99, B: 100 },
+  { metric: "Features", A: 85, B: 90 },
+];
+
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const Charts = () => {
   return (
-    <div className="flex-1 overflow-y-auto pl-64">
-      <h2 className="text-3xl font-bold mb-6 text-gray-900">Charts</h2>
+    <div className="flex-1 overflow-y-auto pl-64 p-6 bg-gray-50 min-h-screen">
+      <h2 className="text-3xl font-bold mb-6 text-gray-900">Charts Dashboard</h2>
 
       {/* Line Chart */}
-      <div>
+      <div className="mb-10 bg-white p-6 rounded shadow">
         <h3 className="text-xl font-semibold mb-4">Sales and Users Over Months</h3>
         <LineChart
           width={700}
@@ -48,7 +58,7 @@ const Charts = () => {
       </div>
 
       {/* Bar Chart */}
-      <div>
+      <div className="mb-10 bg-white p-6 rounded shadow">
         <h3 className="text-xl font-semibold mb-4">Revenue per Month</h3>
         <BarChart
           width={700}
@@ -61,12 +71,35 @@ const Charts = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="revenue" fill="#8884d8" />
+          <Bar dataKey="revenue" fill="#38A169" />
         </BarChart>
       </div>
 
+      {/* Area Chart */}
+      <div className="mb-10 bg-white p-6 rounded shadow">
+        <h3 className="text-xl font-semibold mb-4">Engagement Overview</h3>
+        <AreaChart
+          width={700}
+          height={300}
+          data={sampleData}
+          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="name" />
+          <YAxis />
+          <CartesianGrid strokeDasharray="3 3" />
+          <Tooltip />
+          <Area type="monotone" dataKey="users" stroke="#8884d8" fillOpacity={1} fill="url(#colorUsers)" />
+        </AreaChart>
+      </div>
+
       {/* Pie Chart */}
-      <div>
+      <div className="mb-10 bg-white p-6 rounded shadow">
         <h3 className="text-xl font-semibold mb-4">Traffic Sources</h3>
         <PieChart width={400} height={300}>
           <Pie
@@ -75,7 +108,6 @@ const Charts = () => {
             cy={150}
             innerRadius={60}
             outerRadius={100}
-            fill="#8884d8"
             paddingAngle={5}
             dataKey="value"
             label
@@ -87,6 +119,19 @@ const Charts = () => {
           <Tooltip />
           <Legend />
         </PieChart>
+      </div>
+
+      {/* Radar Chart */}
+      <div className="mb-10 bg-white p-6 rounded shadow">
+        <h3 className="text-xl font-semibold mb-4">User Satisfaction Comparison</h3>
+        <RadarChart outerRadius={90} width={500} height={300} data={radarData}>
+          <PolarGrid />
+          <PolarAngleAxis dataKey="metric" />
+          <PolarRadiusAxis />
+          <Radar name="Current" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+          <Radar name="Previous" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+          <Legend />
+        </RadarChart>
       </div>
     </div>
   );

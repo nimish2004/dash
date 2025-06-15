@@ -42,7 +42,7 @@ const topDrivers = [
 ];
 
 const Dashboard = () => (
-  <div className="flex-1 overflow-y-auto pl-64">
+  <div className="flex-1 overflow-y-auto pl-64 relative z-10">
     <h2 className="text-3xl font-extrabold mb-8 text-gray-900">Welcome to the Dashboard</h2>
     
     {/* Stats Cards */}

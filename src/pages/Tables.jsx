@@ -50,7 +50,7 @@ const Tables = () => {
   };
 
   return (
-    <div className="flex-1 overflow-y-auto pl-64">
+    <div className="pl-12 min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <h2 className="text-4xl font-extrabold text-gray-800 mb-8">Users List</h2>
 
       {/* Add new user form */}
