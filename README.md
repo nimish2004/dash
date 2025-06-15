@@ -1,51 +1,68 @@
+# ⚙️ React Admin Dashboard
 
-
-# React Admin Dashboard
-
-A modern, customizable React Admin Dashboard featuring:
-
-- Customizable Light/Dark themes
-- Responsive tables with add/edit/delete functionality
-- Interactive calendar with event viewing
-- Drag-and-drop Kanban board for task management
-- Charts for data visualization
-- User profile management
-- Notifications and user menu in Navbar
-- Smooth user experience with modular components
-
----
-![image](https://github.com/user-attachments/assets/54ae5eba-0b87-4e2b-95ca-616da7d41724)
-
-## Features
-
-### Theme Customization  
-Toggle between light and dark modes globally using React Context.
-
-### Tables  
-Manage users with add, edit, and delete functionality.
-
-### Calendar  
-View events in a monthly calendar layout with modal event details.
-
-### Kanban Board  
-Drag and drop tasks between columns with real-time state update.
-
-### Charts  
-Visualize data using responsive charts powered by `recharts`.
-
-### User Profile  
-Update user details in a clean, responsive form.
-
-### Notifications  
-Dropdown notifications panel with click outside to close.
+A modern, responsive, and themeable Admin Dashboard built with **React**, **Tailwind CSS**, and **Vite**. Designed for flexibility, mobile responsiveness, and modular scalability.
 
 ---
 
+## 🆕 Recent Updates (June 2025)
+![Screenshot 2025-06-15 113145](https://github.com/user-attachments/assets/64f1e20b-1458-45e9-98f4-c10b026e34e5)
 
-## Installation
+### ✨ UI Enhancements
+- Redesigned **Sidebar** with:
+  - Collapsible behavior
+  - Active item highlighting
+  - Material icons with smooth hover effects
+- Added **Navbar Notifications Dropdown** with click-outside handling
+- Smoothened appearance using Tailwind transitions (`transition-all`, `duration-300`, etc.)
+- Refined icon styling and padding for a clean visual look
 
-1. Clone the repository:
+### 🌗 Theme Support
+- Implemented **dark/light mode** toggle using Context API (`ThemeContext`)
+- Full support across all components with `dark:` Tailwind classes
 
-   ```bash
-   git clone https://github.com/nimish2004/dash.git
-   cd dash
+### 📱 Responsive Design
+- Mobile-first layout adjustments
+- Sidebar and navbar adapt elegantly to small screen sizes
+
+### 🔧 Code Refactoring
+- Modularized component structure:
+  - `components/common/` for reusable UI parts
+  - `components/sidebar/` for sidebar logic
+- Replaced repetitive props with context where appropriate
+
+---
+```
+## 📂 Folder Structure
+src/
+├── components/
+│ ├── common/ # Reusable UI components (cards, toggles, icons)
+│ ├── sidebar/ # Sidebar component and logic
+│ └── navbar/ # Notification dropdown, user menu
+├── context/
+│ └── ThemeContext.jsx # Handles dark/light mode
+├── pages/
+│ └── Dashboard.jsx # Example page
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repo**
+```bash
+git clone https://github.com/nimish2004/dash/
+cd dash
+2. npm install
+3. npm run dev
+```
+
+
+🛠 Built With
+React
+Tailwind CSS
+Vite
+Material Symbols
+Context API
+
